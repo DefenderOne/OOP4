@@ -30,6 +30,10 @@ class FoodModel : public GoodModel {
 };
 
 
+class DeviceModel : public GoodModel {
+
+};
+
 // Chemistry model derived from good model
 class ChemistryModel : public GoodModel {
 
