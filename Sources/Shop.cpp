@@ -1,53 +1,64 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include "../Headers/Shop.h"
 
-#pragma region Shop Item Model
+Item::Item(int id, Good* good) : id(id), good(good) {}
 
-ShopItem::ShopItem(int id, GoodModel* good) : _id(id) {
-    _good = good;
+Item::~Item() {
+    delete good;
 }
 
-ShopItem::~ShopItem() {
-    delete _good;
-}
-
-std::string ShopItem::getInfo() {
-    return _good->getInfo();
-}
-
-#pragma endregion
-
-#pragma region Shop Model
-
-Shop::Shop(std::string name) {
+Store::Store(std::string name) {
     _name = name;
 }
 
-std::string Shop::getName() {
+Store::~Store() {
+    for (auto it = _items.begin(); it != _items.end(); it++) {
+        Item* deletedItem = *it;
+        *it = nullptr;
+        delete deletedItem;
+    }
+    _items.clear();
+}
+
+std::string Store::getName() {
     return _name;
 }
 
-void Shop::addItem(GoodModel* good) {
-    int id;
-    if (!_assortment.empty()) {
-        id = (*_assortment.end())._id + 1;
-        
+void Store::setName(std::string name) {
+    if (!name.empty()) {
+        _name = name;
     }
     else {
-        id = 0;
+        _name = "Unknown";
     }
-    ShopItem addedItem(id, good);
-    _assortment.push_back(addedItem);
+    _income = 0;
 }
 
-std::string Shop::viewAssortment() {
+void Store::addItem(Good* good) {
+    int id = !_items.empty() ? _items.back()->id + 1 : 0;
+    Item* item = new Item(id, good);
+    _items.push_back(item);
+}
+
+std::string Store::viewAssortment() {
     std::string result;
-    for (auto it = _assortment.begin(); it != _assortment.end(); it++) {
-        result += (*it).getInfo() + '\n';
+    for (auto it = _items.begin(); it != _items.end(); it++) {
+        result += (*it)->good->getInfo() + '\n';
     }
+    result[result.size() - 1] = ' ';
     return result;
 }
 
-#pragma endregion
+void Store::removeItem(int id) {
+    std::vector<Item*>::iterator deleted;
+    for (auto it = _items.begin(); it != _items.end(); it++) {
+        if ((*it)->id == id) {
+            deleted = it;
+            break;
+        }
+    }
+    Item* deletedItem = *deleted;
+    _items.erase(deleted);
+    delete deletedItem;
+}

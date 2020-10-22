@@ -1,41 +1,75 @@
+#pragma once
 #include <iostream>
 #include <string>
 
-class GoodModel {
+class Good {
     protected:
     std::string _name;
-    double _price;
+    int _price;
 
     public:
-    GoodModel(std::string name, double price = double());
-
+    Good(std::string name, int price);
     std::string getName();
     double getPrice();
     virtual std::string getInfo() = 0;
 };
 
-class ClothingModel : public GoodModel {
-    private:
-    int _size;
-    std::string _gender;
+#pragma region Computer Model Description 
 
+class Computer : public Good {
     public:
-    ClothingModel(std::string name, double price, int size, std::string gender);
-    bool isFit(int size, std::string gender);
-    std::string getGender();
-    int getSize();
+    enum ComputerType {
+        desktop,
+        laptop
+    };
+    private:
+    ComputerType cType;
+    int _memSize;
+    std::string _cpuName;
+    std::string _gpuName;
+    public:
+    Computer(std::string name, int price, ComputerType type, std::string cpuName, std::string gpuName, int memSize);
+    int getMemSize();
+    std::string getCpuName();
+    std::string getGpuName();
+    std::string getType();
     std::string getInfo() override;
 };
 
-class DeviceModel : public GoodModel {
-    private:
-    bool _isAutonomous;
-    int _energyConsumption;
+#pragma endregion
 
+#pragma region Display Model Description
+
+class Display : public Good {
     public:
-    DeviceModel(std::string name, double price, int energyConsumption, bool isAutonomous);
-    std::string getPowerInfo();
-    bool isAutonomous();
-    int getEnergyConsumption();
+    enum DisplayType {
+        television,
+        monitor
+    };
+    private:
+    DisplayType _dType;
+    std::string _size;
+    std::string _resolution;
+    public:
+    Display(std::string name, int price, DisplayType dType, std::string size, std::string resolution);
+    std::string getType();
+    std::string getSize();
+    std::string getResolution();
     std::string getInfo() override;
 };
+
+#pragma endregion
+
+// Undone
+
+#pragma region Software Model Description
+
+#pragma endregion
+
+#pragma region Printer Model Description
+
+#pragma endregion
+
+#pragma region Information Storage
+
+#pragma endregion

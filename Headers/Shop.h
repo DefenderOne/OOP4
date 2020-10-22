@@ -1,27 +1,30 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include "Good.h"
 
-class ShopItem {
-    private:
-    GoodModel* _good;
-
-    public:
-    const int _id;
-    ShopItem(int id, GoodModel* good);
-    ~ShopItem();
-    std::string getInfo();
+struct Item {
+    int id;
+    Good* good;
+    Item(int id, Good* good);
+    ~Item();
 };
 
-class Shop {
+class Store {
     private:
     std::string _name;
-    std::vector<ShopItem> _assortment;
-
+    std::vector<Item*> _items;
+    int _income;
     public:
-    Shop(std::string name);
+    Store(std::string name);
+    ~Store();
+
     std::string getName();
-    void addItem(GoodModel* good);
+    void setName(std::string name);
+
+    void addItem(Good* good);
+    void removeItem(int id);
     std::string viewAssortment();
 };

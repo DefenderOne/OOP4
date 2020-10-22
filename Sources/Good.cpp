@@ -1,76 +1,91 @@
-#include <iostream>
-#include <string>
 #include "../Headers/Good.h"
 
-#pragma region Base Good Model
 
-GoodModel::GoodModel(std::string name, double price) {
+#pragma region Base Good Model Description
+
+Good::Good(std::string name, int price) {
     _name = name;
     _price = price;
 }
 
-std::string GoodModel::getName() {
+std::string Good::getName() {
     return _name;
 }
 
-double GoodModel::getPrice() {
+double Good::getPrice() {
     return _price;
 }
 
 #pragma endregion
 
+#pragma region Computer Model Description 
 
-#pragma region Clothing Good Model
-
-ClothingModel::ClothingModel(std::string name, double price, int size, std::string gender)
-: GoodModel(name, price) {
-    _size = size;
-    _gender = gender;
+Computer::Computer(std::string name, int price, ComputerType type, std::string cpuName, std::string gpuName, int memSize) 
+: Good(name, price) {
+    cType = type;
+    _cpuName = cpuName;
+    _gpuName = gpuName;
+    _memSize = memSize;
 }
 
-bool ClothingModel::isFit(int size, std::string gender) {
-    return _size == size && _gender == gender;
+int Computer::getMemSize() {
+    return _memSize;
 }
 
-std::string ClothingModel::getGender() {
-    return _gender;
+std::string Computer::getCpuName() {
+    return _cpuName;
 }
 
-int ClothingModel::getSize() {
-    return _size;
+std::string Computer::getGpuName() {
+    return _gpuName;
 }
 
-std::string ClothingModel::getInfo() {
-    return "Clothes: " + _name + ". Price: " + std::to_string(_price) + ". Size: " + std::to_string(_size) + ". Gender: " + _gender;
+std::string Computer::getType() {
+    return (cType == desktop ? "Desktop" : "Laptop");
+}
+
+std::string Computer::getInfo() {
+    return "Computer: " + _name + "(" + (cType == desktop ? "Desktop" : "Laptop") + "). Price: " + std::to_string(_price) +
+    ". CPU: " + _cpuName + ". GPU: " + _gpuName + ". Memory Size: " + std::to_string(_memSize);
 }
 
 #pragma endregion
 
+#pragma region Display Model Description
 
-#pragma region Device Model
-
-DeviceModel::DeviceModel(std::string name, double price, int energyConsumption, bool isAutonomous)
-: GoodModel(name, price) {
-    _energyConsumption = energyConsumption;
-    _isAutonomous = isAutonomous;
+Display::Display(std::string name, int price, DisplayType type, std::string size, std::string resolution)
+: Good(name, price) {
+    _dType = type;
+    _size = size;
+    _resolution = resolution;
 }
 
-int DeviceModel::getEnergyConsumption() {
-    return _energyConsumption;
+std::string Display::getType() {
+    return (_dType == monitor ? "Monitor" : "Television");
 }
 
-bool DeviceModel::isAutonomous() {
-    return _isAutonomous;
+std::string Display::getSize() {
+    return _size;
 }
 
-std::string DeviceModel::getPowerInfo() {
-    return "Energy Consumption: " + std::to_string(_energyConsumption) + " and " + (_isAutonomous ? "" : "non") + "autonomous";
+std::string Display::getResolution() {
+    return _resolution;
 }
 
-std::string DeviceModel::getInfo() {
-    return "Device: " + _name + ". Price: " + std::to_string(_price) + 
-    ". Energy Consumption: " + std::to_string(_energyConsumption) +
-    ". Autonomous: " + (_isAutonomous ? "yes" : "no");
+std::string Display::getInfo() {
+    return "Display: " + _name + "(" + getType() + "). Price: " + std::to_string(_price) + ". Size: " + _size + ". Resolution: " + _resolution;
 }
+
+#pragma endregion
+
+#pragma region Software Model Description
+
+#pragma endregion
+
+#pragma region Printer Model Description
+
+#pragma endregion
+
+#pragma region Information Storage
 
 #pragma endregion

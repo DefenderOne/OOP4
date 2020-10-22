@@ -1,12 +1,15 @@
 #include <iostream>
+#include <string>
 #include "Headers/Shop.h"
+#include "Headers/Good.h"
 
 int main() {
-    Shop store("Bazinga");
+    Store store("Parawa");
     std::cout << store.getName() << std::endl;
-    store.addItem(new ClothingModel("Jacket", 500, 52, "M"));
+    store.setName("Citilink");
+    store.addItem(new Computer("IBM", 25000, Computer::desktop, "Intel Core i3", "nVidia GeForce", 8192));
+    store.addItem(new Display("Samsung", 5600, Display::monitor, "23.5'", "1920x1080"));
     std::cout << store.viewAssortment() << std::endl;
-    //store.addItem(new DeviceModel("Drill", 2500, 50, false));
-    //std::cout << store.viewAssortment() << std::endl;
-    system("pause");
+    store.removeItem(1);
+    std::cout << store.viewAssortment() << std::endl;
 }
