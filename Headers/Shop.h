@@ -27,4 +27,19 @@ class Store {
     void addItem(Good* good);
     void removeItem(int id);
     std::string viewAssortment();
+
+    template <class T>
+    std::string viewCategoryAssortment() {
+        std::string result;
+        for (auto it = _items.begin(); it != _items.end(); it++) {
+            if (dynamic_cast<T*>((*it)->good) != nullptr) {
+                result += (*it)->good->getInfo() + '\n';
+            }
+        }
+        if (result.empty()) {
+            result = "No items found";
+        }
+        result[result.size() - 1] = ' ';
+        return result;
+    }
 };
