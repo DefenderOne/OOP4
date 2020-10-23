@@ -12,7 +12,7 @@ std::string Good::getName() {
     return _name;
 }
 
-double Good::getPrice() {
+int Good::getPrice() {
     return _price;
 }
 

@@ -1,0 +1,8 @@
+Store created with name Parawa
+Name changed to Citilink
+Added new item: IBM1 with ID 0
+Added new item: IBM2 with ID 1
+Added new item: Samsung with ID 2
+Item [0] IBM1 supplied by 5
+Item [2] Samsung removed
+Store Citilink deleted

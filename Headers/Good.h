@@ -10,7 +10,7 @@ class Good {
     public:
     Good(std::string name, int price);
     std::string getName();
-    double getPrice();
+    int getPrice();
     virtual std::string getInfo() = 0;
 };
 
