@@ -1,8 +1,12 @@
 Store created with name Parawa
 Name changed to Citilink
 Added new item: IBM1 with ID 0
-Added new item: IBM2 with ID 1
-Added new item: Samsung with ID 2
-Item [0] IBM1 supplied by 5
-Item [2] Samsung removed
+Added new item: Samsung with ID 1
+Item [1] Samsung removed
+Added new item: Panton with ID 1
+Added new item: Avast with ID 2
+Added new item: Kingston with ID 3
+Item [1] Panton removed
+3 item(s) [0] IBM1 bought on 75000
+Store income was requested and is 75000
 Store Citilink deleted
